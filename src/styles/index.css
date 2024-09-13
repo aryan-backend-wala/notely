@@ -8,6 +8,7 @@
   --gray200: #eeeeee;
   --gray200dark: #757575;
   --black12: rgba(0,0,0, 0.12);
+  --black15: rgba(0,0,0, 0.15);
   --black24: rgba(0, 0, 0, 0.24);
   --black32: rgba(0, 0, 0, 0.32);
   --white: #ffffff;
@@ -81,7 +82,7 @@ body {
   height: 82px;
   border-bottom: 1px;
   background-color: var(--white);
-  box-shadow: 0 4px 20px rgba(0 , 0, 0, 0.15);
+  box-shadow: 0 4px 20px var(--black15);
 }
 
 .box {
@@ -162,6 +163,7 @@ input[type="search"]:active, input[type="search"]:focus {
   display: flex;
   flex-direction: column;
   padding: 22px 20px;
+  box-shadow: 0 4px 20px 0 var(--black15);
 }
 
 .card-header {
@@ -196,6 +198,13 @@ input[type="search"]:active, input[type="search"]:focus {
   background-color: transparent;
   border: none;
   padding: 8px;
+  height: 40px;
+}
+
+.card-btn:hover {
+  box-shadow: 0 0 0 3px var(--black12);
+  border-radius: 20px;
+  background-color: var(--black12);
 }
 
 .card-icon{
