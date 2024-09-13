@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --gray900: #212121;
+  --gray87: rgba(33, 33, 33, 0.87);
+  --gray60: rgba(33, 33, 33, 0.60);
+  --gray36: rgba(33, 33, 33, 0.36);
+  --gray200: #eeeeee;
+  --gray200dark: #757575;
+  --black12: rgba(0,0,0, 0.12);
+  --black24: rgba(0, 0, 0, 0.24);
+  --black32: rgba(0, 0, 0, 0.32);
+  --white: #ffffff;
+  --white24: rgba(255, 255, 255, 0.24);
+  --blue400: #42A5F5;
+  --blue500: #2196F3;
+  --orange900: #E65100;
+  --orange200: #FFCC80;
+  --green900: #1B5E20;
+  --green-200: #A5D6A7;
+  --purple900: #4527A0;
+  --purple200: #B39DDB;
+  --red400: #EF5350;
+  --red500: #F44336;
+}
+
+* {
+  margin: 0;
+}
+
+.header-s {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  line-height: 2.1rem;
+  letter-spacing: 0.25px;
+}
+
+.header-xs {
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  line-height: 2.1rem;
+  letter-spacing: 0.25px;
+}
+
+.button {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5rem;
+  letter-spacing: 1.25px;
+}
+
+.body {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+body {
+  background-color: var(--gray200);
+}
+
+/* navbar */
+
+/* search bar */
+
+.container {
+  height: 82px;
+  border-bottom: 1px;
+  background-color: var(--white);
+  box-shadow: 0 4px 20px rgba(0 , 0, 0, 0.15);
+}
+
+.box {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8rem;
+  gap: 1.25rem
+}
+
+input[type="search"] {
+  width: 1146px;
+  height: 48px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--gray200);
+  color: var(--green900)
+}
+
+input[type="search"]::placeholder {
+  color: var(--gray87);
+  font-weight: 500;
+}
+
+.icon {
+  padding-left: 58px;
+  background: url('/public/icons/search-icon.svg') no-repeat 1.6rem center;
+  background-size: 20px;
+}
+
+input[type="search"]:active, input[type="search"]:focus {
+  outline-color: var(--blue400);
+}
+
+
+/* search button */
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 16px;
+  border: none;
+  background-color: var(--blue400);
+  color: var(--white);
+  cursor: pointer;
+  border-radius: 56px;
+  gap: 0.42rem;
+}
+
+.btn-add .btn-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--white);
+}
+
+.btn-add:hover {
+  background-color: var(--blue500);
+}
+

@@ -1,5 +1,10 @@
+import NavBar from "./components/NavBar";
+import './styles/index.css'
+
 export default function App(){
   return (
-    <h1>Hello World!</h1>
+    <div>
+      <NavBar />
+    </div>
   )
 }
