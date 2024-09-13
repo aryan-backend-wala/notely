@@ -1,6 +1,6 @@
 export default function NavBar(){
   return (
-    <div className="container">
+    <div className="navbar-container">
       <div className="box">
         <input 
           type="search"
