@@ -1,20 +1,19 @@
 import { useState } from "react";
 import Card from "./Card";
-import { initialNotes } from "../utils/InitialNotes";
+import { useNoteStore } from "../store/NoteStore";
 
 const categories = ['all', 'personal', 'home', 'business'];
 
 
 export default function Tab(){
   const [isActive, setIsActive] = useState(0);
-  const [notes, setNotes] = useState(initialNotes);
+  const {notes} = useNoteStore();
   const tabContent = [
     notes,
     notes.filter(note => note.category === 'personal'),
     notes.filter(note => note.category === 'home'),
     notes.filter(note => note.category === 'business'),
   ]
-  console.log(tabContent)
   return (
     <div className="tab">
       <div className="tab_header">
