@@ -110,7 +110,7 @@ input[type="search"]::placeholder {
 
 .icon {
   padding-left: 58px;
-  background: url('/public/icons/search-icon.svg') no-repeat 1.6rem center;
+  background: url('/icons/search-icon.svg') no-repeat 1.6rem center;
   background-size: 20px;
 }
 
