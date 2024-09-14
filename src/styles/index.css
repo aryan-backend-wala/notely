@@ -179,12 +179,25 @@ input[type="search"]:active, input[type="search"]:focus {
 .chip {
   width: 83px;
   height: 48px;
-  background-color: var(--purple200);
-  color: var(--purple900);
   border-radius: 28px;
   display: inherit;
   align-items: center;
   justify-content: center;
+  text-transform: capitalize;
+}
+
+.chip-purple {
+  background-color: var(--purple200);
+  color: var(--purple900);
+}
+
+.chip-green {
+  background-color: var(--green-200);
+  color: var(--green900);
+}
+.chip-orange {
+  background-color: var(--orange200);
+  color: var(--orange900);
 }
 
 .card-icons {
@@ -226,4 +239,53 @@ input[type="search"]:active, input[type="search"]:focus {
   font-family: 'Arial', sans-serif; 
   color: rgba(33, 33, 33, 0.60);
   align-self: flex-end;
+}
+
+.checkbox {
+  padding: 16px;
+}
+
+input[type=checkbox] {
+  transform: scale(1.8) translate(1px, -2px);
+}
+
+/* Tab */
+
+.tab {
+  padding-top: 28px;
+}
+
+.tab_header {
+  display: flex;
+  list-style: none;
+}
+
+.category li{
+  width: 104px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.active {
+  border-bottom: 2px solid var(--blue400);
+  color: var(--blue400);
+}
+
+.not-active {
+  border-bottom: 2px solid var(--black12);
+  color: var(--gray60);
+}
+
+.tab_container {
+  height: 100vh;
+}
+
+.tab_content {
+  padding-top: 33px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 24px;
 }

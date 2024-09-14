@@ -1,12 +1,26 @@
-export default function Card(){
+export default function Card({note}){
+
+  function giveColor(category){
+    switch(category){
+      case 'business': 
+        return "chip-purple"
+      case 'home':
+        return "chip-green"
+      case 'personal':
+        return 'chip-orange'
+    }
+  }
+
   return (
     <div className="card">
       <div className="card-header">
-        <div className="chip body-2">Buisness</div>
+        <div className={`${giveColor(note.category)} chip body-2`}>{note.category}</div>
         <div className="card-icons">
-          <button className="card-btn">
-            <img src="/icons/checkbox.svg" className="card-icon" />
-          </button>
+          <div className="checkbox card-btn">
+            <input 
+              type="checkbox"
+            />
+          </div>
           <button className="card-btn">
             <img src="/icons/edit.svg" className="card-icon" />
           </button>
@@ -15,8 +29,8 @@ export default function Card(){
           </button>
         </div>
       </div>
-      <p className="header-s mb-10">Finish the task on the board</p>
-      <p className="body card-sub-text">Remember to finish task on the board. After finishing give for evaluation Matt.</p>
+      <p className="header-s mb-10">{note.title}</p>
+      <p className="body card-sub-text">{note.description}</p>
       <p className="card-date body-2">22.01.2023</p>
     </div>
   );
