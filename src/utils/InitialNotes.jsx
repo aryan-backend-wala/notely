@@ -13,7 +13,7 @@ export const initialNotes = [
     "category": "home",
     "id": "10:31:02 AM",
     timeStamp: "2024-08-07T11:28:53.247+05:30",
-    isDone: false
+    isDone: true
   },
   {
     "title": "Hang out with Marry",

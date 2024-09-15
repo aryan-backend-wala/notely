@@ -6,7 +6,6 @@ export default function Notes(){
     <div className="container">
       <p className="header-s ">Your Notes</p>
       <Tab />
-      {/* <Card /> */}
     </div>
   );
 }

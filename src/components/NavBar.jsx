@@ -1,3 +1,5 @@
+import Modal from "./Modal";
+
 export default function NavBar(){
   return (
     <div className="navbar-container">
@@ -12,6 +14,7 @@ export default function NavBar(){
           <span className="btn=text button">Add</span>
         </button>
       </div>
+      <Modal  />
     </div>
   );
 }

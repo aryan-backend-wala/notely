@@ -1,5 +1,7 @@
-export default function Card({note}){
+import { useState } from "react";
 
+export default function Card({note}){
+  const [click, setClick] = useState(note.isDone);
   function giveColor(category){
     switch(category){
       case 'business': 
@@ -16,11 +18,11 @@ export default function Card({note}){
       <div className="card-header">
         <div className={`${giveColor(note.category)} chip body-2`}>{note.category}</div>
         <div className="card-icons">
-          <div className="checkbox card-btn">
-            <input 
-              type="checkbox"
-            />
-          </div>
+          <button onClick={() => setClick(!click)} className="card-btn">
+            <img 
+              className="card-icon" 
+              src={`/icons/checkbox${click ? "-tick" : ""}.svg`} />
+          </button>
           <button className="card-btn">
             <img src="/icons/edit.svg" className="card-icon" />
           </button>
