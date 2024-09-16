@@ -5,7 +5,7 @@ export const useDropDownStore = create((set) => ({
   setIsOpen: (flag) => set(() => ({
     isOpen: flag,
   })),
-  selectedOption: 'Personal',
+  selectedOption: 'personal',
   setSelectedOption: (option) => set(() => ({
     selectedOption: option
   }))

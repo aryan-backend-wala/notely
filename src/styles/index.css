@@ -194,6 +194,11 @@ input[type="search"]:active, input[type="search"]:focus {
   text-transform: capitalize;
 }
 
+.not-chip {
+  background-color: var(--gray36);
+  color: var(--gray36);
+}
+
 .chip-purple {
   background-color: var(--purple200);
   color: var(--purple900);
@@ -247,6 +252,19 @@ input[type="search"]:active, input[type="search"]:focus {
   font-family: 'Arial', sans-serif; 
   color: rgba(33, 33, 33, 0.60);
   align-self: flex-end;
+}
+
+.not-text {
+  text-decoration: line-through;
+  color: var(--gray36);
+}
+
+.not-card {
+  opacity: 0.76;
+}
+
+.cursor {
+  cursor: not-allowed;
 }
 
 /* Tab */
@@ -315,6 +333,7 @@ input[type="search"]:active, input[type="search"]:focus {
   height: 100%;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 
 .modal-content {
@@ -432,6 +451,7 @@ input[type="search"]:active, input[type="search"]:focus {
   padding: 10px;
   cursor: pointer;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .wrapper:focus, .wrapper:hover {

@@ -3,20 +3,44 @@ import DropDown from "./DropDown";
 import { useModalStore } from "../store/ModalStore";
 import { useDropDownStore } from "../store/DropDownStore";
 import { useNoteStore } from "../store/NoteStore";
+import { DateTime } from "luxon";
 
 export default function Modal(){
-  const {notes} = useNoteStore();
-  const options = [...notes.map(note => note.category)];
+  const [note, setNote] = useState({
+    id: new Date().toLocaleTimeString() + new Date().getMilliseconds(),
+    title: "",
+    description: "",
+    category: "personal",
+    isDone: false,
+    timeStamp: DateTime.now().toISO()
+  })
+  const id = 3;
+  const {notes, addNote} = useNoteStore();
+  const options = ['Personal', 'Home', 'Business'];
 
   const { isModalOpen, setIsModalOpen } = useModalStore();
 
-  const { setIsOpen } = useDropDownStore();
+  const { setIsOpen, selectedOption, setSelectedOption } = useDropDownStore();
   function handleOutsideClick(e) {
     if(e.target.className === 'modal'){
       setIsModalOpen(false);
       setIsOpen(false)
     }
   }
+
+  function handleAddNote(){
+    addNote({...note, category: selectedOption})
+    setNote({
+      ...note,
+      title: "",
+      description: "",
+      isDone: false,
+      id: new Date().toLocaleTimeString() + new Date().getMilliseconds(),
+    })
+    setSelectedOption('personal')
+    setIsModalOpen(false)
+  }
+  console.log(notes[0].isDone);
 
   return (
     <div>
@@ -41,6 +65,8 @@ export default function Modal(){
                     id="title"
                     type="text"
                     placeholder="Add title"
+                    value={note.title}
+                    onChange={(e) => setNote({...note, title: e.target.value})}
                   />
                 </label>
                 <label className="button">
@@ -58,10 +84,12 @@ export default function Modal(){
               <textarea 
                 className="description body-3"
                 placeholder="Add description"
+                value={note.description}
+                onChange={(e) => setNote({...note, description: e.target.value})}
               />
               <div className="modal-footer">
-                <button className="btn-cancel button">Cancel</button>
-                <button className="btn-add-modal button">Add</button>
+                <button onClick={() => setIsModalOpen(false)} className="btn-cancel button">Cancel</button>
+                <button onClick={handleAddNote} className="btn-add-modal button">Add</button>
               </div>
             </div>
           </div>

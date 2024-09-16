@@ -1,20 +1,27 @@
 import { useState } from "react";
 import Card from "./Card";
 import { useNoteStore } from "../store/NoteStore";
+import { useShowAllStore } from "../store/ShowAll";
 
 const categories = ['all', 'personal', 'home', 'business'];
 
 
 export default function Tab(){
   const [isActive, setIsActive] = useState(0);
-  const [click, setClick] = useState(false);
+  const {showAll, setShowAll} = useShowAllStore();
   const {notes} = useNoteStore();
+
   const tabContent = [
-    notes,
-    notes.filter(note => note.category === 'personal'),
-    notes.filter(note => note.category === 'home'),
-    notes.filter(note => note.category === 'business'),
+    showAll ? notes.filter(note => note.isDone) :
+      notes,
+    showAll ? notes.filter(note => note.category === 'personal' && note.isDone) :
+      notes.filter(note => note.category === 'personal'),
+    showAll ? notes.filter(note => note.category === 'home' && note.isDone) :
+      notes.filter(note => note.category === 'home'),
+    showAll ? notes.filter(note => note.category === 'business' && note.isDone) :
+      notes.filter(note => note.category === 'business'),
   ]
+  
   return (
     <div className="tab">
       <div className="tab-h">
@@ -29,10 +36,10 @@ export default function Tab(){
           }
         </div>
         <div className="checkbox-text">
-          <button onClick={() => setClick(!click)} className="card-btn">
+          <button onClick={() => setShowAll()} className="card-btn">
             <img 
               className="card-icon" 
-              src={`/icons/checkbox${click ? "-tick" : ""}.svg`} />
+              src={`/icons/checkbox${showAll ? "-tick" : ""}.svg`} />
           </button>
           <p className="body">Show only completed notes</p>
         </div>

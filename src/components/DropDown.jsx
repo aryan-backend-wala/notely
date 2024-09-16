@@ -15,7 +15,7 @@ export default function DropDown({options}){
   };
 
   const selectOption = (option) => {
-    setSelectedOption(option);
+    setSelectedOption(option.toLowerCase());
   };
   
   useEffect(() => {
