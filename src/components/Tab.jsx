@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { useNoteStore } from "../store/NoteStore";
 import { useShowAllStore } from "../store/ShowAll";
@@ -9,8 +9,7 @@ const categories = ['all', 'personal', 'home', 'business'];
 export default function Tab(){
   const [isActive, setIsActive] = useState(0);
   const {showAll, setShowAll} = useShowAllStore();
-  const {notes} = useNoteStore();
-
+  const {notes, searchValue} = useNoteStore();
   const tabContent = [
     showAll ? notes.filter(note => note.isDone) :
       notes,

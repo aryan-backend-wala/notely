@@ -1,9 +1,12 @@
 import { useState } from "react";
 import {handleISOString} from '../utils/dateFromString'
 import { useNoteStore } from "../store/NoteStore";
+import { useModalStore } from "../store/ModalStore";
 
 export default function Card({note}){
   const {deleteNote, editIsDone} = useNoteStore();
+  const {noteToFind} = useNoteStore();
+  const {setIsModalOpen} = useModalStore()
   function giveColor(category){
     switch(category){
       case 'business': 
@@ -26,7 +29,10 @@ export default function Card({note}){
               className="card-icon" 
               src={`/icons/checkbox${note.isDone ? "-tick" : ""}.svg`} />
           </button>
-          <button className={`${note.isDone ? 'cursor' : ""} card-btn`}>
+          <button onClick={() => {
+            noteToFind(note.id)
+            setIsModalOpen(true)
+          }} className={`${note.isDone ? 'cursor' : ""} card-btn`}>
             <img src="/icons/edit.svg" className="card-icon" />
           </button>
           <button

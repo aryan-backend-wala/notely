@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DropDown from "./DropDown";
 import { useModalStore } from "../store/ModalStore";
 import { useDropDownStore } from "../store/DropDownStore";
@@ -14,22 +14,43 @@ export default function Modal(){
     isDone: false,
     timeStamp: DateTime.now().toISO()
   })
-  const id = 3;
-  const {notes, addNote} = useNoteStore();
   const options = ['Personal', 'Home', 'Business'];
 
-  const { isModalOpen, setIsModalOpen } = useModalStore();
-
+  
+  const { 
+    isModalOpen, 
+    setIsModalOpen 
+  } = useModalStore();
+  const {
+    updateNote,
+    noteToEdit,
+    addNote,
+    resetNoteToEdit
+  } = useNoteStore();
   const { setIsOpen, selectedOption, setSelectedOption } = useDropDownStore();
+  useEffect(() => {
+    if(noteToEdit){
+      setNote(noteToEdit)
+    }
+  }, [noteToEdit])
   function handleOutsideClick(e) {
     if(e.target.className === 'modal'){
       setIsModalOpen(false);
       setIsOpen(false)
     }
   }
-
+  
+  
   function handleAddNote(){
-    addNote({...note, category: selectedOption})
+    if(noteToEdit){
+      setSelectedOption(noteToEdit.category)
+      updateNote(noteToEdit.id, {...note, category: selectedOption})
+      setIsModalOpen(false)
+    } else {
+      addNote({...note, category: selectedOption})
+      setSelectedOption('personal')
+      setIsModalOpen(false)
+    }
     setNote({
       ...note,
       title: "",
@@ -37,11 +58,8 @@ export default function Modal(){
       isDone: false,
       id: new Date().toLocaleTimeString() + new Date().getMilliseconds(),
     })
-    setSelectedOption('personal')
-    setIsModalOpen(false)
+    resetNoteToEdit()
   }
-  console.log(notes[0].isDone);
-
   return (
     <div>
       { isModalOpen && 
@@ -89,7 +107,8 @@ export default function Modal(){
               />
               <div className="modal-footer">
                 <button onClick={() => setIsModalOpen(false)} className="btn-cancel button">Cancel</button>
-                <button onClick={handleAddNote} className="btn-add-modal button">Add</button>
+                <button onClick={handleAddNote} className="btn-add-modal button">{
+                  noteToEdit ? "Save" : "Add"}</button>
               </div>
             </div>
           </div>
