@@ -1,22 +1,34 @@
 import { useState } from "react";
+import DropDown from "./DropDown";
+import { useModalStore } from "../store/ModalStore";
+import { useDropDownStore } from "../store/DropDownStore";
+import { useNoteStore } from "../store/NoteStore";
 
 export default function Modal(){
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const {notes} = useNoteStore();
+  const options = [...notes.map(note => note.category)];
 
+  const { isModalOpen, setIsModalOpen } = useModalStore();
+
+  const { setIsOpen } = useDropDownStore();
   function handleOutsideClick(e) {
     if(e.target.className === 'modal'){
       setIsModalOpen(false);
+      setIsOpen(false)
     }
   }
 
   return (
     <div>
-      { 
+      { isModalOpen && 
         <div onClick={handleOutsideClick} className="modal">
           <div className="modal-content">
             <div className="modal-header">
               <p className="header-s">Add note</p>
-              <button className="btn-close">
+              <button onClick={() => {
+                setIsModalOpen(false)
+                setIsOpen(false)
+              }} className="btn-close">
                 <img src="/icons/close.svg" />
               </button>
             </div>
@@ -33,16 +45,23 @@ export default function Modal(){
                 </label>
                 <label className="button">
                   Category
-                  <select
-                    id="category"
-                    value={'personal'}
-                    className="body"
-                  >
-                    <option value="personal">Personal</option>
-                    <option value="home">Home</option>
-                    <option value="business">Business</option>
-                  </select>
+                  <DropDown options={options} />
                 </label>
+              </div>
+              <div className="textbox-header">
+                <label className="body" htmlFor="description">
+                  Description
+                  <span className="optional">(optional)</span>
+                </label>
+                <p className="body-2 p-200">0/200</p>
+              </div>
+              <textarea 
+                className="description body-3"
+                placeholder="Add description"
+              />
+              <div className="modal-footer">
+                <button className="btn-cancel button">Cancel</button>
+                <button className="btn-add-modal button">Add</button>
               </div>
             </div>
           </div>

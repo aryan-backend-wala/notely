@@ -1,6 +1,8 @@
+import { useModalStore } from "../store/ModalStore";
 import Modal from "./Modal";
 
 export default function NavBar(){
+  const { setIsModalOpen } = useModalStore();
   return (
     <div className="navbar-container">
       <div className="box">
@@ -9,7 +11,7 @@ export default function NavBar(){
           className="icon body"
           placeholder="Search"
         />
-        <button className="btn-add">
+        <button onClick={() => setIsModalOpen(true)} className="btn-add">
           <img src="/icons/add.svg" className="btn-icon" alt="add icon" />
           <span className="btn=text button">Add</span>
         </button>
