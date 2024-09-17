@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDropDownStore } from "../store/DropDownStore"
+import { useNoteStore } from "../store/NoteStore";
 
 export default function DropDown({options}){
   const { 

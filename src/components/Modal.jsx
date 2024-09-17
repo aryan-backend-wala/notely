@@ -30,7 +30,8 @@ export default function Modal(){
   const { setIsOpen, selectedOption, setSelectedOption } = useDropDownStore();
   useEffect(() => {
     if(noteToEdit){
-      setNote(noteToEdit)
+      setNote({noteToEdit})
+      setSelectedOption(noteToEdit.category)
     }
   }, [noteToEdit])
   function handleOutsideClick(e) {

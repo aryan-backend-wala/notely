@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {handleISOString} from '../utils/dateFromString'
 import { useNoteStore } from "../store/NoteStore";
 import { useModalStore } from "../store/ModalStore";
