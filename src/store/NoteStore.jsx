@@ -6,6 +6,10 @@ export const useNoteStore = create((set) => ({
   addNote: (newNote) => set((state) => ({
     notes: [...state.notes, {...newNote}]
   })),
+  deleteId: null,
+  setDeleteId: (id) => set((state) => ({
+    deleteId: id
+  })),
   deleteNote: (id) => set((state) => ({
     notes: state.notes.filter(note => note.id !== id)
   })),
@@ -25,5 +29,9 @@ export const useNoteStore = create((set) => ({
   })),
   resetNoteToEdit: () => set((state) => ({
     noteToEdit: null
-  }))
+  })),
+  searchValue: "",
+  setSearchValue: (value) => set((state) => ({
+    searchValue: value
+  })),
 }))

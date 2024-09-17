@@ -553,3 +553,43 @@ label[for="description"] {
 .btn-cancel:hover, .btn-cancel:focus {
   color: var(--gray87);
 }
+
+.delete-modal {
+  display: flex; /* Change from 'none' */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.delete-modal-content {
+  width: 402px;
+  height: 200px;
+  background-color: var(--white);
+  padding: 27px 24px 24px;
+  border-radius: 16px;
+}
+
+.mt-23 {
+  margin-top: 23px;
+}
+
+.btn-delete-modal {
+  border: none;
+  background-color: var(--red400);
+  color: var(--white);
+  border-radius: 56px;
+  padding: 10px 16px;
+  width: 84px;
+  height: 44px;
+}
+
+.btn-delete-modal:hover, .btn-delete-modal:focus {
+  background-color: var(--red500);
+}

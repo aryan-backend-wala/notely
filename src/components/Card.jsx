@@ -2,11 +2,14 @@ import { useState } from "react";
 import {handleISOString} from '../utils/dateFromString'
 import { useNoteStore } from "../store/NoteStore";
 import { useModalStore } from "../store/ModalStore";
+import { useDeleteModalStore } from "../store/DeleteModalStore";
+import DeleteModal from "./DeleteModal";
 
 export default function Card({note}){
-  const {deleteNote, editIsDone} = useNoteStore();
+  const {editIsDone, setDeleteId} = useNoteStore();
   const {noteToFind} = useNoteStore();
   const {setIsModalOpen} = useModalStore()
+  const {setIsDModalOpen} = useDeleteModalStore();
   function giveColor(category){
     switch(category){
       case 'business': 
@@ -37,7 +40,10 @@ export default function Card({note}){
           </button>
           <button
             disabled={note.isDone ? true : false}
-            onClick={() => deleteNote(note.id)} 
+            onClick={() => {
+              setIsDModalOpen(true)
+              setDeleteId(note.id)
+            }} 
             className={`${note.isDone ? 'cursor' : ""} card-btn`}>
             <img src="/icons/delete.svg" className="card-icon" />
           </button>
@@ -46,6 +52,7 @@ export default function Card({note}){
       <p className={`header-s mb-10 ${note.isDone? 'not-text' : ''}`}>{note.title}</p>
       <p className={`body card-sub-text ${note.isDone? 'not-text' : ''}`}>{note.description}</p>
       <p className="card-date body-2">{handleISOString(note.timeStamp)}</p>
+      <DeleteModal />
     </div>
   );
 }

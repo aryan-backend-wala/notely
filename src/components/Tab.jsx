@@ -10,16 +10,19 @@ export default function Tab(){
   const [isActive, setIsActive] = useState(0);
   const {showAll, setShowAll} = useShowAllStore();
   const {notes, searchValue} = useNoteStore();
+  const filteredNotes = notes.filter((note) => 
+    note.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
   const tabContent = [
-    showAll ? notes.filter(note => note.isDone) :
-      notes,
-    showAll ? notes.filter(note => note.category === 'personal' && note.isDone) :
-      notes.filter(note => note.category === 'personal'),
-    showAll ? notes.filter(note => note.category === 'home' && note.isDone) :
-      notes.filter(note => note.category === 'home'),
-    showAll ? notes.filter(note => note.category === 'business' && note.isDone) :
-      notes.filter(note => note.category === 'business'),
-  ]
+    showAll ? filteredNotes.filter(note => note.isDone) :
+      filteredNotes,
+    showAll ? filteredNotes.filter(note => note.category === 'personal' && note.isDone) :
+      filteredNotes.filter(note => note.category === 'personal'),
+    showAll ? filteredNotes.filter(note => note.category === 'home' && note.isDone) :
+      filteredNotes.filter(note => note.category === 'home'),
+    showAll ? filteredNotes.filter(note => note.category === 'business' && note.isDone) :
+      filteredNotes.filter(note => note.category === 'business'),
+  ];
   
   return (
     <div className="tab">
