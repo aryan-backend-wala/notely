@@ -593,3 +593,12 @@ label[for="description"] {
 .btn-delete-modal:hover, .btn-delete-modal:focus {
   background-color: var(--red500);
 }
+
+.no-notes {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 81px;
+}

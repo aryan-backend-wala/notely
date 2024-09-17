@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import NoNotesError from "./NoNotesError"
 import Card from "./Card";
 import { useNoteStore } from "../store/NoteStore";
 import { useShowAllStore } from "../store/ShowAll";
@@ -10,7 +11,7 @@ export default function Tab(){
   const [isActive, setIsActive] = useState(0);
   const {showAll, setShowAll} = useShowAllStore();
   const {notes, searchValue} = useNoteStore();
-  const filteredNotes = notes.filter((note) => 
+   const filteredNotes = notes.filter((note) => 
     note.title.toLowerCase().includes(searchValue.toLowerCase())
   );
   const tabContent = [
@@ -47,7 +48,9 @@ export default function Tab(){
         </div>
       </div>
       <div className="tab_container">
-        <div className="tab_content">
+        {
+          tabContent[isActive].length > 0 ?
+          <div className="tab_content">
           {
             tabContent[isActive].map(
               note => (
@@ -58,8 +61,11 @@ export default function Tab(){
               )
             )
           }
-        </div>
+        </div> : 
+          <NoNotesError />
+        }
       </div>
     </div>
   );
 }
+// tabContent[isActive]
